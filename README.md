@@ -1,18 +1,19 @@
-# Vue 3 + TypeScript + Vite
+# Palia Clock
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+This is an experimental little tool for players of the game [Palia](https://palia.com/).
+So far it is just a little tool to show the in-game time, 
+so you can check wether your crops need more water or your favorite NPC is awake.
 
-## Recommended IDE Setup
+*This project is neither affiliated with nor officially supported by the creators of Palia.*
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+If you have not played the game yet, I can highly recommend trying!
+Kindly consider using my referral code [`661e3bf4-653c-4fe3-b34a-7b7c10fc7ed9`](https://accounts.palia.com/sign-up?referral=661e3bf4-653c-4fe3-b34a-7b7c10fc7ed9), so I can get a cute plushie in game 😻
 
-## Type Support For `.vue` Imports in TS
+## Live Preview Build
+<img src="src/assets/ghpages-qrcode.png" align="right" width="200" height="200" alt="QR Code to launch Palia Clock">
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+[![Deploy to GitHub Pages](https://github.com/SharkyTheWhite/palia-clock/actions/workflows/deploy-gh-pages.yml/badge.svg)](https://github.com/SharkyTheWhite/palia-clock/actions/workflows/deploy-gh-pages.yml)
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+You can see and try the current state of the tool in your browser here:
 
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+**:arrow_forward: [Start SVG Game Demo](https://sharkythewhite.github.io/palia-clock/)**

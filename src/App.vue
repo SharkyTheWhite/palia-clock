@@ -1,31 +1,20 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue';
+import PaliaClock from './components/PaliaClock.vue';
 </script>
 
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-    <p>Foo</p>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
+  <h1>Palia Clock</h1>
+  <PaliaClock class="palia-clock" />
+  <p>
+    This is an experimental little tool for players of the online game Palia.<br/>
+    <a href="https://github.com/SharkyTheWhite/palia-clock">About this Project (includes referral code 😇)</a><br/>
+    <em>This project is neither affiliated with nor officially supported by the creators of Palia.</em>
+  </p>
 </template>
 
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+.palia-clock {
+  max-width: 85vw;
+  max-height: 85vw;
 }
 </style>
