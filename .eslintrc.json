@@ -1,0 +1,47 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:import/typescript",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:vue/vue3-recommended",
+    "@vue/typescript/recommended",
+    "@vue/eslint-config-typescript",
+    "prettier",
+    "eslint-config-prettier"
+  ],
+  "ignorePatterns": [
+    "node_modules",
+    "dist"
+  ],
+  "env": {
+    "browser": true
+  },
+  "plugins": [
+    "@typescript-eslint",
+    "prettier"
+  ],
+  "rules": {
+    "prettier/prettier": "warn"
+  },
+  "overrides": [
+    {
+      "files": ["*.ts","*.vue"],
+      "rules": {
+        "no-undef": "off"
+      }
+    },
+    {
+      "files": ["*.vue"],
+      "parser": "vue-eslint-parser",
+      "rules": {
+        "vue/block-lang": ["error",
+          {
+            "script": {
+              "lang": "ts"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
