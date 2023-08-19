@@ -6,9 +6,14 @@ import PaliaClock from './components/PaliaClock.vue';
   <h1>Palia Clock</h1>
   <PaliaClock class="palia-clock" />
   <p>
-    This is an experimental little tool for players of the online game Palia.<br/>
-    <a href="https://github.com/SharkyTheWhite/palia-clock">About this Project (includes referral code 😇)</a><br/>
-    <em>This project is neither affiliated with nor officially supported by the creators of Palia.</em>
+    This is an experimental little tool for players of the online game Palia.<br />
+    <a href="https://github.com/SharkyTheWhite/palia-clock">
+      About this Project (includes referral code 😇) </a
+    ><br />
+    <em>
+      This project is neither affiliated with nor officially supported by the
+      creators of Palia.
+    </em>
   </p>
 </template>
 

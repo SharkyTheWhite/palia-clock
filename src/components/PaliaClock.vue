@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import SvgDonutArc from "./SvgDonutArc.vue";
+import SvgDonutArc from './SvgDonutArc.vue';
 import { computed, onMounted, onUnmounted, ref } from 'vue';
 
 const realTimeOfDay = ref<number>(0); // in Minutes since midnight
@@ -61,14 +61,45 @@ const ra = 43;
 </script>
 
 <template>
-  <svg width="500" height="500" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+  <svg
+    width="500"
+    height="500"
+    viewBox="0 0 500 500"
+    xmlns="http://www.w3.org/2000/svg">
     <g transform="scale(5) translate(50,50)">
       <circle class="clock" r="45" cx="0" cy="0" />
-      <SvgDonutArc class="segment" a0="0" a1="45" :ri="ri" :ra="ra" fill="darkorange" />
-      <SvgDonutArc class="segment" a0="45" a1="135" :ri="ri" :ra="ra" fill="navy" />
-      <SvgDonutArc class="segment" a0="135" a1="180" :ri="ri" :ra="ra" fill="yellow" />
-      <SvgDonutArc class="segment" a0="180" a1="0" :ri="ri" :ra="ra" fill="lightblue" />
-      <path class="dial" :d="`M 35 0 L 44 -8 A 43 43 0 0 1 44 8 z`" :transform="dialTransform" />
+      <SvgDonutArc
+        class="segment"
+        :a0="0"
+        :a1="45"
+        :ri="ri"
+        :ra="ra"
+        fill="darkorange" />
+      <SvgDonutArc
+        class="segment"
+        :a0="45"
+        :a1="135"
+        :ri="ri"
+        :ra="ra"
+        fill="navy" />
+      <SvgDonutArc
+        class="segment"
+        :a0="135"
+        :a1="180"
+        :ri="ri"
+        :ra="ra"
+        fill="yellow" />
+      <SvgDonutArc
+        class="segment"
+        :a0="180"
+        :a1="0"
+        :ri="ri"
+        :ra="ra"
+        fill="lightblue" />
+      <path
+        class="dial"
+        :d="`M 35 0 L 44 -8 A 43 43 0 0 1 44 8 z`"
+        :transform="dialTransform" />
       <text y="6" font-size="14">{{ clockText }}</text>
       <text y="-7.5" font-size="8">{{ partOfDay }}</text>
       <!-- <text y="12.5" font-size="6">Palian Time</text> -->
@@ -82,14 +113,17 @@ const ra = 43;
   stroke: black;
   stroke-width: 1px;
 }
+
 .dial {
   fill: black;
   stroke: none;
 }
+
 .segment {
   stroke: gray;
   stroke-width: 1px;
 }
+
 text {
   text-anchor: middle;
   font-weight: bold;
