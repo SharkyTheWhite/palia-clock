@@ -2,13 +2,19 @@
 import SvgDonutArc from './SvgDonutArc.vue';
 import { computed, onMounted, onUnmounted, ref } from 'vue';
 
-const realTimeOfDay = ref<number>(0); // in Minutes since midnight
+const realTimePST = ref<number>(0); // in Seconds since Sunday, 3.1.1970 PST
+
+// Subtract this from UTC timestamp to get seconds since Sunday, 3.1.1970 PST
+// PST is UTC-8 so we subtract 8 hours and 3 days
+const PST_UTC_SUNDAY_OFFSET = 60 * 60 * (8 + 3 * 24);
+const MINUTE = 60;
+const HOUR = 60 * 60;
+const DAY = 60 * 60 * 24;
 
 function updateRealTime() {
   const now = new Date();
   const epoch_seconds = now.getTime() / 1000;
-  const epoch_minutes = epoch_seconds / 60;
-  realTimeOfDay.value = epoch_minutes % (60 * 24);
+  realTimePST.value = epoch_seconds - PST_UTC_SUNDAY_OFFSET;
 }
 
 let todInterval: number | null = null;
@@ -23,11 +29,9 @@ onUnmounted(() => {
   todInterval = null;
 });
 
-const debugSpeedup = 1;
-
 const palianTimeOfDay = computed(() => {
   // One Palian day equals one real-life hour and starts on the full hour.
-  return (realTimeOfDay.value * debugSpeedup * 24) % (60 * 24);
+  return (realTimePST.value * 24) % DAY;
 });
 
 function d2(x: number): string {
@@ -35,14 +39,14 @@ function d2(x: number): string {
 }
 
 const clockText = computed(() => {
-  const tod = Math.floor(palianTimeOfDay.value);
-  const m = tod % 60;
-  const h = (tod - m) / 60;
+  const palianTimeOfDayMinutes = Math.floor(palianTimeOfDay.value / MINUTE);
+  const m = palianTimeOfDayMinutes % 60;
+  const h = (palianTimeOfDayMinutes - m) / 60;
   return `${d2(h)}:${d2(m)}`;
 });
 
 const partOfDay = computed(() => {
-  const h = palianTimeOfDay.value / 60;
+  const h = palianTimeOfDay.value / HOUR;
   if (h >= 21 || h < 3) return 'Night'; // 21 to 3
   if (h >= 18) return 'Evening'; // 18 to 21
   if (h >= 6) return 'Day'; // 6 to 18
@@ -51,9 +55,27 @@ const partOfDay = computed(() => {
 
 const dialTransform = computed(() => {
   // 360 degrees per palian day
-  const degrees = (360 * palianTimeOfDay.value) / (60 * 24);
+  const degrees = (360 * palianTimeOfDay.value) / DAY;
   // Midnight is bottom of dial
   return `rotate(${degrees + 90})`;
+});
+
+/*
+ * IRL Week starts Sunday 10 PM in PST zone (https://palia.wiki.gg/wiki/Hassian)?
+ * IRL Day starts at 9 PM PST (10 PM PDT ?) (https://palia.wiki.gg/wiki/Gifting)?
+ * PST is UTC-8 and has DST (PDT) but we assume it might not be relevant for Palia?
+ * Since 9 and 10 PM are mentioned assuming 9PM is PST and 10pm is PDT.
+ */
+const timeSincePSTWeek = computed(() => {
+  return (realTimePST.value - 21 * HOUR) % (7 * DAY);
+});
+
+const cycleText = computed(() => {
+  const palianCycleThisWeek = timeSincePSTWeek.value / HOUR;
+  const palianCycleThisDay = Math.floor(palianCycleThisWeek) % 24;
+  const palianDayThisWeek = Math.floor(palianCycleThisWeek / 24);
+
+  return `Day ${palianDayThisWeek + 1} Cycle ${d2(palianCycleThisDay + 1)}`;
 });
 
 const ri = 25;
@@ -88,7 +110,7 @@ const ra = 43;
         :a1="180"
         :ri="ri"
         :ra="ra"
-        fill="yellow" />
+        fill="gold" />
       <SvgDonutArc
         class="segment"
         :a0="180"
@@ -102,7 +124,7 @@ const ra = 43;
         :transform="dialTransform" />
       <text y="6" font-size="14">{{ clockText }}</text>
       <text y="-7.5" font-size="8">{{ partOfDay }}</text>
-      <!-- <text y="12.5" font-size="6">Palian Time</text> -->
+      <text y="12.5" font-size="5">{{ cycleText }}</text>
     </g>
   </svg>
 </template>
