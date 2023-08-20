@@ -16,4 +16,4 @@ Kindly consider using my referral code [`661e3bf4-653c-4fe3-b34a-7b7c10fc7ed9`](
 
 You can see and try the current state of the tool in your browser here:
 
-**:arrow_forward: [Start SVG Game Demo](https://sharkythewhite.github.io/palia-clock/)**
+**:arrow_forward: [Show live Palia Clock](https://sharkythewhite.github.io/palia-clock/)**
