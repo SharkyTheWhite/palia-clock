@@ -1,7 +1,19 @@
 {
   "name": "palia-clock",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
+  "license": "MIT",
+  "description": "This is an experimental little tool for players of the game Palia. This project is neither affiliated with nor officially supported by the creators of Palia.",
+  "homepage": "https://sharkythewhite.github.io/palia-clock",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SharkyTheWhite/palia-clock.git"
+  },
+  "author": {
+    "name": "SharkyTheWhite",
+    "email": "git@sharkythewhite.eu",
+    "url": "http://sharkythewhite.eu"
+  },
   "type": "module",
   "scripts": {
     "dev": "vite",
