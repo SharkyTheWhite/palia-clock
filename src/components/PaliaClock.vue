@@ -2,6 +2,7 @@
 import SvgDonutArc from './SvgDonutArc.vue';
 import { computed, onMounted, onUnmounted, ref } from 'vue';
 
+const PAGE_TITLE = 'Palia Clock';
 const realTimePST = ref<number>(0); // in Seconds since Sunday, 3.1.1970 PST
 
 // Subtract this from UTC timestamp to get seconds since Sunday, 3.1.1970 PST
@@ -15,6 +16,7 @@ function updateRealTime() {
   const now = new Date();
   const epoch_seconds = now.getTime() / 1000;
   realTimePST.value = epoch_seconds - PST_UTC_SUNDAY_OFFSET;
+  document.title = `${clockText.value} - ${PAGE_TITLE}`;
 }
 
 let todInterval: number | null = null;
