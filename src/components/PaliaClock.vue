@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import SvgDonutArc from './SvgDonutArc.vue';
-import { computed, onMounted, onUnmounted, ref } from 'vue';
+import { computed, onMounted, onUnmounted, ref, watch } from 'vue';
 
 const realTimePST = ref<number>(0); // in Seconds since Sunday, 3.1.1970 PST
 
@@ -43,6 +43,10 @@ const clockText = computed(() => {
   const m = palianTimeOfDayMinutes % 60;
   const h = (palianTimeOfDayMinutes - m) / 60;
   return `${d2(h)}:${d2(m)}`;
+});
+
+watch(clockText, (newClockText) => {
+  document.title = `${newClockText} - Palia Clock`;
 });
 
 const partOfDay = computed(() => {
